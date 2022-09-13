@@ -14,7 +14,13 @@ class CreateApplicationsTable extends Migration
     public function up()
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->id();
+            $table->id();              
+            $table->string('topic');              //Тема
+            $table->string('message');            //Сообщение
+            $table->string('name', 100);          //Имя
+            $table->string('email')->unique();    //Email (уникальный)
+            $table->string('link');               //Ссылка на файл
+            $table->string('condition');          //Состояние заявки (расмотрена или нет)
             $table->timestamps();
         });
     }
