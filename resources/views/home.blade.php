@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    Личный кабинет
                 </div>
             </div>
         </div>
