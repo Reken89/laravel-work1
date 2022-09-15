@@ -30,7 +30,7 @@ Route::get('/admin', function(){
 
 
 # Роуты для пользователей
-Route::get('/user', function(){
-    echo "ПРОСТОЙ ПОЛЬЗОВАТЕЛЬ";
-})->middleware(['auth'])->name('user');
+Route::get('/user', [\App\Http\Controllers\ApplicationsController::class, 'users_table'])->middleware(['auth'])->name('user');
+//Роут добавления заявок
+Route::post('/add_applications', [\App\Http\Controllers\ApplicationsController::class, 'add_applications'])->middleware(['auth'])->name('add_applications');
     
