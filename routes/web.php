@@ -15,8 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
-Auth::routes();
+# Подключаем middleware admin
+Route::get('/dashboard')->middleware(['auth', 'admin'])->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+require __DIR__.'/auth.php';
+
+# Роуты для менеджера
+Route::get('/admin', function(){
+    echo "АДМИН";
+})->middleware(['auth','admin'])->name('admin');
+
+
+# Роуты для пользователей
+Route::get('/user', function(){
+    echo "ПРОСТОЙ ПОЛЬЗОВАТЕЛЬ";
+})->middleware(['auth'])->name('user');
+    
