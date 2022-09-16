@@ -16,4 +16,6 @@
            <input class="btn btn-success" type="submit" value="Отправить">
 </form>
 
-
+@if(isset($info))
+Текст
+@endif

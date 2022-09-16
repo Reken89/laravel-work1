@@ -18,7 +18,7 @@ class CreateApplicationsTable extends Migration
             $table->string('topic');              //Тема
             $table->string('message');            //Сообщение
             $table->string('name', 100);          //Имя
-            $table->string('email')->unique();    //Email (уникальный)
+            $table->string('email');              //Email 
             $table->string('link');               //Ссылка на файл
             $table->string('condition');          //Состояние заявки (расмотрена или нет)
             $table->timestamps();

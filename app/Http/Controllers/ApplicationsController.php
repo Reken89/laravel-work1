@@ -37,6 +37,17 @@ class ApplicationsController extends Controller
 
         //Выполняем запись в БД
         
+        //Проверяем когда была отправлена последняя заявка конкретнвм пользователем
+        $date1 = new Applications;
+        $date1 = $date1->data($email);
+        
+        //Получаем сегодняшнюю дату
+        $date2 = date("Y-m-d H:i:s");
+        
+        //Если сегодня пользователь не отправлял заявок, разрешаем запись в БД
+        
+        if($date2>$date1){
+        
         $applications = new Applications();
         $applications->fill([
             'topic' => $topic,
@@ -48,9 +59,13 @@ class ApplicationsController extends Controller
             ]);
        $applications->save();
        
+        }
+       
        //Редирект
+       $info = "Заявка отправлена";
+           
        return response()->redirectToRoute('user');
-       return view('user');
+       return view('user', ['info' => $info]);
         
     }
 }

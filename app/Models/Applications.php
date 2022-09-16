@@ -18,4 +18,11 @@ class Applications extends Model
         'condition'
     ];
     
+        public function data($email){
+            
+            $data = \DB::table('applications')->where('email', $email)->max('created_at');
+            return $data;
+            
+        }
+        
 }
