@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',      
+        'role',    
     ];
 
     /**
@@ -45,8 +45,10 @@ class User extends Authenticatable
     
     
     // Проверка пользователя на статус администратора
+ 
     public function isAdmin()
     {
         return $this->role === '1';
     }
+     
 }
