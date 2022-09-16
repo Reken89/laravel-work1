@@ -17,14 +17,6 @@ class ApplicationsController extends Controller
     
     public function add_applications(Request $request){
         
-        //Проверяем существует ли картинка
-        if($request->hasFile('image')){
-        $image = $request->file('image');
-
-        //Получим путь и укажем куда сохранить файл
-        $path = $image->store('');
-        $link = asset("storage/$path");
-        }
         
         //Получаем name и email авторизованного пользователя
         $name = Auth::user()->name;
@@ -41,12 +33,30 @@ class ApplicationsController extends Controller
         $date1 = new Applications;
         $date1 = $date1->data($email);
         
-        //Получаем сегодняшнюю дату
-        $date2 = date("Y-m-d H:i:s");
+        //Получим только день из даты
+        //Если пользователь ранее не отправлял заявок, присваиваем значение 0 дате
+        if($date1 !== "no"){
+        $date1 = str_split($date1, 2);
+        $date1 = $date1[4];
+        }else{
+            $date1 = 0;
+        }
         
-        //Если сегодня пользователь не отправлял заявок, разрешаем запись в БД
+        //Получаем сегодняшнюю дату (день)
+        $date2 = date('d');
         
+        //Если сегодня пользователь не отправлял заявок, разрешаем запись в БД      
         if($date2>$date1){
+            
+                //Проверяем существует ли картинка
+                if($request->hasFile('image')){
+                $image = $request->file('image');
+
+                //Получим путь и укажем куда сохранить файл
+                $path = $image->store('');
+                $link = asset("storage/$path");
+                }
+            
         
         $applications = new Applications();
         $applications->fill([
