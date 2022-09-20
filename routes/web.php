@@ -28,6 +28,8 @@ Route::get('/admin', function(){
     echo "АДМИН";
 })->middleware(['auth','admin'])->name('admin');
 
+Route::post('/update_applications', [\App\Http\Controllers\ApplicationsController::class, 'update_applications'])->middleware(['auth', 'admin'])->name('update');
+
 
 # Роуты для пользователей
 Route::get('/user', [\App\Http\Controllers\ApplicationsController::class, 'users_table'])->middleware(['auth'])->name('user');

@@ -89,4 +89,22 @@ class ApplicationsController extends Controller
         
     }
     
+    
+        public function update_applications(Request $request){
+        
+                $id = $request->input('id');
+   
+                $applications = Applications::find($id);
+
+                $applications->condition = 1;
+
+                $applications->save();
+ 
+           
+
+        //Редирект
+        return response()->redirectToRoute('dashboard');
+        //return view('manager');
+        
+    }
 }
