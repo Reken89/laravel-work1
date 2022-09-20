@@ -18,7 +18,7 @@ Route::get('/', function () {
 })->name('index');
 
 # Подключаем middleware admin
-Route::get('/dashboard')->middleware(['auth', 'admin'])->name('dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\ApplicationsController::class, 'manager_table'])->middleware(['auth', 'admin'])->name('dashboard');
 
 
 require __DIR__.'/auth.php';

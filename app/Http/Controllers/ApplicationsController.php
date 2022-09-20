@@ -78,4 +78,15 @@ class ApplicationsController extends Controller
        return view('user', ['info' => $info]);
         
     }
+    
+    public function manager_table(){
+        
+        //Получаем все записи в табличке applications
+        $applications = Applications::all();
+             
+        //Подключаем шаблон представления
+        return view('manager', ['applications' => $applications]);
+        
+    }
+    
 }
