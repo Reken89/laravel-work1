@@ -85,8 +85,8 @@ class ApplicationsController extends Controller
         $applications = Applications::all();
              
         //Подключаем шаблон представления
-        return view('manager', ['applications' => $applications]);
-        
+       // return view('manager', ['applications' => $applications]);
+        return response()->json(['applications' => $applications]);
     }
     
     
